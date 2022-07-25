@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.tribal.mapper.CityMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.tribal.entity.City">
+        <result column="CITY_ID" jdbcType="VARCHAR" property="cityId"/>
+        <result column="CITY_NAME" jdbcType="VARCHAR" property="cityName"/>
+        <result column="REGION_ID" jdbcType="INTEGER" property="regionId"/>
+    </resultMap>
+
+    <select id="getCityList" resultMap="BaseResultMap">
+
+        SELECT *
+        FROM trqb.city;
+
+    </select>
+    <select id="getCityListByPostGre" resultMap="BaseResultMap">
+
+        SELECT *
+        FROM trqb.CITY;
+
+    </select>
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(1)
+        from DMHR.CITY
+    </select>
+
+    <insert id="insertCity" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO DMHR.CITY
+        (city_id,
+         city_name,
+         region_id)
+        VALUES (#{cityId},
+                #{cityName},
+                #{regionId})
+    </insert>
+
+    <insert id="insertCityJc" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO cube.CITY
+        (city_id,
+         city_name,
+         region_id)
+        VALUES (#{cityId},
+                #{cityName},
+                #{regionId})
+    </insert>
+
+
+    <insert id="insertGre" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO trqb.CITY
+        (city_id,
+         city_name,
+         region_id)
+        VALUES (#{cityId},
+                #{cityName},
+                #{regionId})
+    </insert>
+
+
+    <delete id="delCity" flushCache="true" statementType="PREPARED" timeout="20">
+        DELETE
+        FROM DMHR.CITY
+        WHERE city_id = #{cityId}
+    </delete>
+
+
+    <select id="getRegionList" resultMap="BaseResultMap">
+        select *
+        FROM DMHR.REGION
+    </select>
+
+
+
+    <select id="getCityDMList" resultMap="BaseResultMap">
+        select *
+        FROM DMHR.CITY
+    </select>
+
+
+    <select id="getCityListByRegionId" resultMap="BaseResultMap">
+        select *
+        FROM DMHR.CITY
+        WHERE REGION_ID = #{regionId}
+    </select>
+
+
+</mapper>

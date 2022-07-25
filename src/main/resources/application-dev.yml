@@ -1,0 +1,79 @@
+spring:
+  redis:
+    database: 1
+    host: 127.0.0.1
+    port: 6379
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: 60
+        max-idle: 8
+        min-idle: 0
+    timeout: 10000
+  data:
+    elasticsearch:
+    cluster-name: es-cluster
+    cluster-nodes: 192.168.4.121:9200
+  datasource:
+    # Druid连接池配置。spring-boot-2默认连接池hikari不支持MysqlXADataSource
+    type: com.alibaba.druid.pool.xa.DruidXADataSource
+    # 最小空闲连接
+    min-pool-size: 5
+    # 池中最大连接数
+    max-pool-size: 20
+    # 设置连接在池中被自动销毁之前保留的最大秒数。 可选，默认为0（无限制）。
+    max-life-time: 60
+    # 返回连接前用于测试连接的SQL查询
+    test-query: SELECT 1
+
+    dynamic:
+      primary: master #设置默认的数据源或者数据源组,默认值即为master
+      strict: false #设置严格模式,默认false不启动. 启动后在未匹配到指定数据源时候会抛出异常,不启动则使用默认数据源.
+      datasource:
+        master:
+          url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:127.0.0.1}:${DATASOURCE_PORT:3306}/tribal?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=UTC
+          username: ${DATASOURCE_USERNAME:root}
+          password: ${DATASOURCE_PASSWORD:root@123}
+          # 使用druid数据源
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          type: com.alibaba.druid.pool.DruidDataSource
+        slave:
+          url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:127.0.0.1}:${DATASOURCE_PORT:3306}/union?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=UTC
+          username: ${DATASOURCE_USERNAME:root}
+          password: ${DATASOURCE_PASSWORD:root@123}
+          # 使用druid数据源
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          type: com.alibaba.druid.pool.DruidDataSource
+        dm:
+          url: jdbc:dm://192.168.4.39:5236/DMHR?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true
+          username: SYSDBA
+          password: 123456789
+          driver-class-name: dm.jdbc.driver.DmDriver
+          type: com.alibaba.druid.pool.DruidDataSource
+        kingbase:
+          url: jdbc:kingbase8://192.168.4.39:54321/test?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
+          username: SYSTEM
+          password: 123456789
+          driver-class-name: com.kingbase8.Driver
+          type: com.alibaba.druid.pool.DruidDataSource
+        postgre:
+          url: jdbc:postgresql://192.168.4.39:15432/tribal?currentSchema=postgres
+          username: gaussdb
+          password: Root@123
+          driver-class-name: org.postgresql.Driver
+          type: com.alibaba.druid.pool.DruidDataSource
+      druid:
+        filters: stat,slf4j
+
+  jta:
+    transaction-manager-id: txManager
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+flowable:
+  async-executor-activate: false
+
+mybatis:
+  # 指定sql映射文件位置
+  mapper-locations: classpath:mapper/*.xml
