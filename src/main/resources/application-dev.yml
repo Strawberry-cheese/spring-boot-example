@@ -77,3 +77,8 @@ flowable:
 mybatis:
   # 指定sql映射文件位置
   mapper-locations: classpath:mapper/*.xml
+logging:
+  level:
+    org.springframework.web: info
+    org.apache.http: info
+    us.codecraft.webmagic: info
