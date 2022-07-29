@@ -1,3 +1,5 @@
+server:
+  port: 8901
 spring:
   redis:
     database: 1
@@ -10,6 +12,18 @@ spring:
         max-idle: 8
         min-idle: 0
     timeout: 10000
+  activiti:
+    database-schema-update: true
+    #设置历史数据级别，默认none，不会有历史数据
+    history-level: audit
+    #是否创建历史数据相关表，默认false，不会创建相关历史数据库表ACT_HI_***
+    db-history-used: true
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: null
   data:
     elasticsearch:
     cluster-name: es-cluster
@@ -31,7 +45,7 @@ spring:
       strict: false #设置严格模式,默认false不启动. 启动后在未匹配到指定数据源时候会抛出异常,不启动则使用默认数据源.
       datasource:
         master:
-          url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:127.0.0.1}:${DATASOURCE_PORT:3306}/tribal?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=UTC
+          url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:127.0.0.1}:${DATASOURCE_PORT:3306}/trabal?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=UTC
           username: ${DATASOURCE_USERNAME:root}
           password: ${DATASOURCE_PASSWORD:root@123}
           # 使用druid数据源
@@ -71,8 +85,6 @@ spring:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
-flowable:
-  async-executor-activate: false
 
 mybatis:
   # 指定sql映射文件位置
@@ -82,3 +94,4 @@ logging:
     org.springframework.web: info
     org.apache.http: info
     us.codecraft.webmagic: info
+

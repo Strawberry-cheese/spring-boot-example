@@ -274,4 +274,9 @@ public class TestController {
         return hits.length + "";
     }
 
+
+    @GetMapping("/test")
+    public String a(){
+        return "asd";
+    }
 }

@@ -90,7 +90,8 @@ public class JobProcessor implements PageProcessor {
     private void saveJobInfo(Page page) {
         //解析页面
         Html html = page.getHtml();
-        String companyName = html.css("div.cn p.cname a", "text").get();
+
+        String companyName = html.css("clearfix cnav", "text").get();
         List<String> text = html.css("div.bmsg.inbox p.fp", "text").all();
         String companyAddr = text.get(text.size() - 1);
         String jobName = html.css("div.cn h1", "text").get();

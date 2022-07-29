@@ -15,6 +15,7 @@
     <description>spring-boot-example</description>
     <properties>
         <java.version>1.8</java.version>
+        <activiti.version>7.1.0.M5</activiti.version>
     </properties>
     <dependencies>
         <dependency>
@@ -23,10 +24,74 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.junit/org.junit -->
+
+        <!--activiti7-->
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-spring-boot-starter</artifactId>
+            <version>7.1.0.M1</version>
+        </dependency>
+        <!--用于生成流程图片-->
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-image-generator</artifactId>
+            <version>7.1.0.M6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-engine</artifactId>
+            <version>7.1.0.M6</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>1.5.9.RELEASE</version>
+            <!--<scope>test</scope>-->
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <!--<scope>test</scope>-->
+        </dependency>
+
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <!-- Kafka -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper -->
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>3.6.2</version>
+        </dependency>
+
+        <!--rabbitmq-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -41,6 +106,13 @@
             <version>1.0.5</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-spring-boot-starter</artifactId>
+            <version>7.1.0.M3.1</version>
+        </dependency>
+
+        <!--其他依赖有需要再加-->
 
         <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-generator -->
         <dependency>
@@ -132,7 +204,10 @@
             <artifactId>hutool-all</artifactId>
             <version>5.1.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 
 
 
