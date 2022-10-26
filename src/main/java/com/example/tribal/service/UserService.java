@@ -15,4 +15,6 @@ public interface UserService extends IService<User> {
 
 
     Integer add1(User user);
+
+    User getUserById(String userId);
 }

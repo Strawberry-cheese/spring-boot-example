@@ -25,4 +25,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public Integer add1(User user) {
         return userMapper.insert(user);
     }
+
+    @Override
+    @DS("master")
+    public User getUserById(String userId) {
+        return userMapper.selectById(userId);
+    }
 }

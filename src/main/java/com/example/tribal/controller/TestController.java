@@ -1,6 +1,7 @@
 package com.example.tribal.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.tribal.annotation.Ip;
 import com.example.tribal.entity.City;
 import com.example.tribal.service.CityService;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
@@ -275,8 +276,14 @@ public class TestController {
     }
 
 
-    @GetMapping("/test")
+    @GetMapping("/test1")
+    @Ip
     public String a(){
         return "asd";
     }
+
+
+
+
+
 }
